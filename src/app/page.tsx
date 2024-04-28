@@ -14,24 +14,14 @@ const Home = async () => {
       // HERO ROW
       className="flex w-full flex-wrap items-center justify-around gap-12 bg-gradient-to-br from-background to-background/50 py-12 md:justify-center"
     >
-      <div className="flex w-full flex-col gap-8 md:w-1/2 lg:w-1/3">
-        <h1 className="w-full text-center text-5xl font-extrabold tracking-wider text-foreground sm:text-[5rem]">
-          nToDos
-        </h1>
-        <h2 className="w-full text-center text-xl tracking-wider text-foreground">
-          Just a lil todo app by Neffrey
-        </h2>
-      </div>
-      <div className="flex w-full items-center justify-center">
-        <ProtectedContent
-          authedRoles={["ADMIN", "USER"]}
-          fallback={<LoginBtn />}
-        >
+      <ProtectedContent
+        authedRoles={["ADMIN", "USER", "RESTRICTED"]}
+        fallback={<LoginBtn />}
+      >
+        <div className="flex w-full flex-col items-center gap-6">
           <CreateTaskDialog />
-        </ProtectedContent>
-      </div>
-      <ProtectedContent authedRoles={["ADMIN", "USER", "RESTRICTED"]}>
-        <TaskTableController />
+          <TaskTableController />
+        </div>
       </ProtectedContent>
     </div>
   );

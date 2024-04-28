@@ -9,7 +9,7 @@ const UnauthedLogin = () => {
   return (
     <div className="flex h-full w-full flex-1 flex-col items-center justify-center gap-10">
       <h1 className="text-5xl font-bold text-primary-foreground">
-        Please Login
+        Please Login or signup
       </h1>
       <Button onClick={() => signIn()} size={"lg"}>
         Login
