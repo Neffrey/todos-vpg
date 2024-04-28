@@ -81,7 +81,7 @@ export const accounts = createTable(
   {
     userId: varchar("userId", { length: 255 })
       .notNull()
-      .references(() => users.id),
+      .references(() => users.id, { onDelete: "cascade" }),
     type: varchar("type", { length: 255 })
       .$type<AdapterAccount["type"]>()
       .notNull(),
@@ -115,7 +115,7 @@ export const sessions = createTable(
       .primaryKey(),
     userId: varchar("userId", { length: 255 })
       .notNull()
-      .references(() => users.id),
+      .references(() => users.id, { onDelete: "cascade" }),
     expires: timestamp("expires", { mode: "date" }).notNull(),
   },
   (session) => ({
@@ -155,7 +155,7 @@ export const profilePictures = createTable(
       .$default(() => nanoid(12)),
     userId: text("userId")
       .notNull()
-      .references(() => users.id),
+      .references(() => users.id, { onDelete: "cascade" }),
     url: text("url").notNull(),
     createdAt: timestamp("createdAt", {
       mode: "date",
@@ -192,7 +192,7 @@ export const tasks = createTable(
     title: text("title").notNull(),
     userId: text("user")
       .notNull()
-      .references(() => users.id),
+      .references(() => users.id, { onDelete: "cascade" }),
     timesToComplete: integer("timesToComplete").default(1).notNull(),
     timeframe: text("timeframe", { enum: TASK_TIMEFRAMES })
       .default(TASK_TIMEFRAMES[0])
@@ -235,10 +235,10 @@ export const taskCompletions = createTable(
       .$default(() => nanoid(12)),
     taskId: text("taskId")
       .notNull()
-      .references(() => tasks.id),
+      .references(() => tasks.id, { onDelete: "cascade" }),
     userId: text("user")
       .notNull()
-      .references(() => users.id),
+      .references(() => users.id, { onDelete: "cascade" }),
     timeframeCompletion: boolean("timeframeCompletion")
       .default(false)
       .notNull(),
@@ -284,10 +284,10 @@ export const comments = createTable(
       .$default(() => nanoid(12)),
     taskId: text("taskId")
       .notNull()
-      .references(() => tasks.id),
+      .references(() => tasks.id, { onDelete: "cascade" }),
     userId: text("user")
       .notNull()
-      .references(() => users.id),
+      .references(() => users.id, { onDelete: "cascade" }),
     content: text("content").notNull(),
     createdAt: timestamp("createdAt", {
       mode: "date",
