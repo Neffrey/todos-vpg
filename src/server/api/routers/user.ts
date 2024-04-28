@@ -35,7 +35,9 @@ export const userRouter = createTRPCRouter({
       return await ctx.db
         .update(users)
         .set({
-          name: input.name ? sanitize.keepSpace(input.name) : undefined,
+          // name: input?.name && input.name ? sanitize.keepSpace(input.name) : undefined,
+          name: input?.name ? sanitize.keepSpace(input.name) : undefined,
+          // test: sanitize.keepSpace(input.name)
           image: input.image ? input.image : undefined,
           colorTheme: input.colorTheme ? input.colorTheme : undefined,
           showCompletedTasksDefault: input.showCompletedSetting
@@ -61,7 +63,7 @@ export const userRouter = createTRPCRouter({
       return await ctx.db
         .update(users)
         .set({
-          name: input.name ? sanitize.keepSpace(input.name) : undefined,
+          // name: input.name ? sanitize.keepSpace(input.name) : undefined,
           image: input.image ? input.image : undefined,
           role: input.role ? input.role : undefined,
         })
