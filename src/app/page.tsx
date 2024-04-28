@@ -13,7 +13,6 @@ const Home = async () => {
     <div
       // HERO ROW
       className="flex w-full flex-wrap items-center justify-around gap-12 bg-gradient-to-br from-background to-background/50 md:justify-center "
-      // md:px-20 px-4 py-16
     >
       <div className="flex w-full flex-col gap-5 md:w-1/2 lg:w-1/3">
         <h1 className="w-full text-center text-5xl font-extrabold tracking-wider text-foreground sm:text-[5rem]">

@@ -5,7 +5,9 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import { FaPaintBrush, FaStar } from "react-icons/fa";
-import { type UploadFileResponse } from "uploadthing/client";
+// import {type ClientUploadedFileData} from "uploadthing/types";
+import { type ClientUploadedFileData } from "uploadthing/types";
+// import { ClientUploadedFileData } from "";
 
 // UTILS
 import { cn } from "~/lib/utils";
@@ -55,10 +57,10 @@ const ProfPicChangeDialog = () => {
   const addProfilePic = api.profilePictures.create.useMutation({
     onSuccess: async () => {
       await updateSession();
-      // setOpen(false);
-      // toast({
-      //   action: <DivedToast type="success">{"Edit User Success"}</DivedToast>,
-      // });
+      setOpen(false);
+      toast({
+        action: <DivedToast type="success">{"Edit User Success"}</DivedToast>,
+      });
     },
     onError: (error) => {
       toast({
@@ -74,7 +76,7 @@ const ProfPicChangeDialog = () => {
   };
 
   const handleAddImage = (
-    res: UploadFileResponse<{
+    res: ClientUploadedFileData<{
       uploadedBy: string;
     }>[],
   ) => {
@@ -128,7 +130,6 @@ const ProfPicChangeDialog = () => {
             onClientUploadComplete={(res) => {
               // Do something with the response
               console.log("Files: ", res);
-              //  handleAddImageToDB(res);
               handleAddImage(res);
             }}
             onUploadError={(error: Error) => {
@@ -150,7 +151,7 @@ const ProfPicChangeDialog = () => {
             </h3>
           ) : null}
           <div className="flex items-center justify-around gap-8">
-            {ppStatus === "loading" ? <LoadingSpinner /> : null}
+            {ppStatus === "pending" ? <LoadingSpinner /> : null}
             {profilePictures && profilePictures?.length > 0 ? (
               <div className="flex items-center justify-center gap-10">
                 <div className="flex items-center justify-center gap-10">
