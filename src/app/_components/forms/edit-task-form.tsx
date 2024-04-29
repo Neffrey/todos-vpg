@@ -93,7 +93,7 @@ const EditTaskForm = ({ form }: EditTaskFormProps) => {
     toast({
       action: (
         <DivedToast type="success">
-          {`Task "${validatedValues.title}" editted successfully!`}
+          {`Task "${validatedValues.title}" edited successfully!`}
         </DivedToast>
       ),
     });
